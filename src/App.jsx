@@ -3,6 +3,17 @@ import './App.css'
 import PlayButton from './Components/PlayButton'
 import { createClient } from '@supabase/supabase-js'
 import AddButton from './Components/AddButton'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+/* import all the icons in Free Solid, Free Regular, and Brands styles */
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+
+library.add(fas, far, fab)
+
+
 
 function App() {
   const [count, setCount] = useState(0);
@@ -55,18 +66,18 @@ function App() {
 
           <div class='options'>
             <div class='previous'>
-              <i></i>
+              <FontAwesomeIcon icon={["fas", "backward"]} />
             </div>
             <PlayButton />
             <div class='skip'>
-              <i></i>
+              <FontAwesomeIcon icon={["fas", "fast-forward"]} />
             </div>
           </div>
 
           <div class='timeSlider'>
-            <div class='duration'>00:00</div>
-            <input type='range' min='1' max='100' value='0'></input>
-            <div class='duration'>00:00</div>
+            <div class='current-duration'>00:00</div>
+            <input type='range' min='1' max='100' value='0' class='volume-sliding'></input>
+            <div class='total-duration'>00:00</div>
           </div>
 
           <div class='volumeSlider'>

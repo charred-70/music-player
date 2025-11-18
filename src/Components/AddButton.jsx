@@ -3,7 +3,10 @@ import React from 'react'
 const AddButton = () => {
 
     return (
-        <button>Add</button>
+        <button>
+            <i class="fa-solid fa-play"></i>
+            Play
+        </button>
     )
 }
 

@@ -92,6 +92,11 @@ button:focus-visible {
   flex-direction: column;
 }
 
+.player p {
+  font-size: large;
+  color: black;
+}
+
 .songsList {
   color: black;
   border-radius: 20px;
@@ -109,6 +114,23 @@ button:focus-visible {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.songsList p {
+  text-align: center;
+  padding: 40px;
+  font-size: large;
+  margin-left: 90px;
+}
+
+.songsList button {
+  padding: 40px;
+  height: 20px;
+  width: 20px;
+  margin-top: 30px;
+  margin-right: 30px;
+  border-radius: 20px;
+  background-color: purple;
 }
 
 .listMenu {
@@ -132,4 +154,79 @@ button:focus-visible {
   margin: auto;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.total-duration,
+current-duration {
+  padding: 10px;
+}
+
+.timeSlider {
+  width: 75%;
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 60px;
+}
+
+.volume-sliding {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 5px;
+  background: black;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.volume_sliding::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: white;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.volume-sliding:hover {
+  opacity: 1.0;
+}
+
+.volume-sliding {
+  width: 60%;
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.previous,
+.skip,
+.play {
+  margin: 5px;
+  background-color: blue;
+  border-radius: 20px;
+  padding: 20px;
+
+  opacity: 0.8;
+
+  transition: opacity .2s;
+}
+
+.previous:hover,
+.skip:hover,
+.play:hover {
+  opacity: 1.0;
+}
+
+i.fa-step-forward,
+i.fa-step-backward {
+  cursor: pointer;
 }
