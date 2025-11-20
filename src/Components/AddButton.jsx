@@ -11,7 +11,11 @@ const AddButton = () => {
             return;
         }
     }
-
+    /*
+    if user presses button 
+    display text boxes for input
+    then add songs to supabase
+    */
     return (
         <button>
             <i class="fa-solid fa-play"></i>
