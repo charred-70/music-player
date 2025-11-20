@@ -3,8 +3,10 @@ import './App.css'
 import PlayButton from './Components/PlayButton'
 import { createClient } from '@supabase/supabase-js'
 import AddButton from './Components/AddButton'
+import SkipButton from './Components/SkipButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
+import PreviousButton from './Components/PreviousButton'
 
 /* import all the icons in Free Solid, Free Regular, and Brands styles */
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -65,13 +67,9 @@ function App() {
 
 
           <div class='options'>
-            <div class='previous'>
-              <FontAwesomeIcon icon={["fas", "backward"]} />
-            </div>
+            <PreviousButton />
             <PlayButton />
-            <div class='skip'>
-              <FontAwesomeIcon icon={["fas", "fast-forward"]} />
-            </div>
+            <SkipButton />
           </div>
 
           <div class='timeSlider'>
