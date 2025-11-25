@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import PlayButton from './Components/PlayButton'
 import { createClient } from '@supabase/supabase-js'
-import AddButton from './Components/AddButton'
 import SkipButton from './Components/SkipButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import PreviousButton from './Components/PreviousButton'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 /* import all the icons in Free Solid, Free Regular, and Brands styles */
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -20,6 +20,9 @@ library.add(fas, far, fab)
 function App() {
   const [count, setCount] = useState(0);
   const [songs, setSongs] = useState([]);
+  const [title, setTitle] = useState('');
+  const [artist, setArtist] = useState('');
+
 
 
   const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY);
@@ -31,6 +34,16 @@ function App() {
   async function getSongs() {
     const { data } = await supabase.from("songs").select();
     setSongs(data);
+  }
+
+  async function addSong(event) {
+    event.preventDefault();
+    const { data, error } = await supabase.from('songs').insert([{ title: title, artist: artist }]);
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(data);
+    }
   }
 
   /**upload song -> learn to use storage api
@@ -49,7 +62,13 @@ function App() {
         <div class='list'>
           <div class='listMenu'>
             <h2>App Name</h2>
-            <AddButton />
+            <button>
+              <i class="fa-solid fa-play"></i>
+              Add Song
+            </button>
+            <input type='text' onChange={(event) => setArtist(event.target.value)}></input>
+            <input type='text' onChange={(event) => setTitle(event.target.value)}></input>
+            <button type='submit' onClick={addSong}>Submit</button>
           </div>
           <ul class='songsList'>
             {songs.map((song) => (
@@ -83,6 +102,10 @@ function App() {
             <input type='range' min='1' max='100' value='99'></input>
             <i></i>
           </div>
+
+          <Link to='/authTest'>
+            <button>test time</button>
+          </Link>
         </div>
       </div>
     </>
