@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import PlayButton from './Components/PlayButton'
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from './utils/client.js'
 import SkipButton from './Components/SkipButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -18,23 +18,22 @@ library.add(fas, far, fab)
 
 
 function App() {
-  const [count, setCount] = useState(0);
   const [songs, setSongs] = useState([]);
   const [title, setTitle] = useState('');
   const [artist, setArtist] = useState('');
 
 
 
-  const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY);
-
-  useEffect(() => {
-    getSongs();
-  }, []);
+  const supabase = createClient();
 
   async function getSongs() {
     const { data } = await supabase.from("songs").select();
     setSongs(data);
   }
+
+  useEffect(() => {
+    getSongs();
+  }, []);
 
   async function addSong(event) {
     event.preventDefault();
@@ -66,8 +65,8 @@ function App() {
               <i class="fa-solid fa-play"></i>
               Add Song
             </button>
-            <input type='text' onChange={(event) => setArtist(event.target.value)}></input>
             <input type='text' onChange={(event) => setTitle(event.target.value)}></input>
+            <input type='text' onChange={(event) => setArtist(event.target.value)}></input>
             <button type='submit' onClick={addSong}>Submit</button>
           </div>
           <ul class='songsList'>

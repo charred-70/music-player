@@ -10,8 +10,8 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
-        <Route path='/authTest' element={<AuthTest />} />
-        <Route path='/' element={<App />} />
+        <Route path='/' element={<AuthTest />} />
+        <Route path='/player' element={<App />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

@@ -230,3 +230,12 @@ i.fa-step-forward,
 i.fa-step-backward {
   cursor: pointer;
 }
+
+.login-button,
+.playerButton {
+  margin-left: 10px;
+}
+
+.authText {
+  color: rgb(250, 247, 252);
+}
