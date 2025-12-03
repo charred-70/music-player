@@ -21,7 +21,7 @@ function App() {
   const [songs, setSongs] = useState([]);
   const [title, setTitle] = useState('');
   const [artist, setArtist] = useState('');
-
+  const [profile, setProfile] = useState(null);
 
 
   const supabase = createClient();
@@ -52,6 +52,11 @@ function App() {
    * display metadataa of the song in the actual player. 
    * 
    * separate table to store metadata -> displaying songs on the side
+   * 
+   * user uploads file
+   *    upload to supabase storage
+   *      gives url
+   *      store file in sql table
    * 
    */
 

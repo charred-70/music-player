@@ -49,8 +49,24 @@ export default function AuthTest() {
         // Listen for auth changes
         const {
             data: { subscription },
-        } = supabase.auth.onAuthStateChange((_event, session) => {
+        } = supabase.auth.onAuthStateChange(async (_event, session) => {
             setSession(session);
+
+            if (_event == "SIGNED_IN" && session?.user) {
+                const { data: profile } = await supabase
+                    .from("profiles")
+                    .select("id")
+                    .eq("id", session.user.id)
+                    .maybeSingle();
+
+                if (!profile) {
+                    await supabase.from("profiles").insert({
+                        id: session.user.id,
+                        email: session.user.email,
+                        created_at: new Date().toISOString()
+                    })
+                }
+            }
         });
 
         return () => subscription.unsubscribe();
