@@ -14,7 +14,7 @@ import { far } from '@fortawesome/free-regular-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 
 library.add(fas, far, fab)
-
+import FileInput from './Components/FileInput.jsx'
 
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
   const [title, setTitle] = useState('');
   const [artist, setArtist] = useState('');
   const [profile, setProfile] = useState(null);
+
 
 
   const supabase = createClient();
@@ -58,6 +59,13 @@ function App() {
    *      gives url
    *      store file in sql table
    * 
+   * mp3 files have metadata: song title, artist, album cover
+   * 
+   * make api endpoint for files 
+   * request form data -> auth, user, files 
+   * add to storage
+   * make audio url accessable
+   * 
    */
 
   return (
@@ -66,13 +74,14 @@ function App() {
         <div class='list'>
           <div class='listMenu'>
             <h2>App Name</h2>
-            <button>
+            {/* <button>
               <i class="fa-solid fa-play"></i>
               Add Song
             </button>
             <input type='text' onChange={(event) => setTitle(event.target.value)}></input>
             <input type='text' onChange={(event) => setArtist(event.target.value)}></input>
-            <button type='submit' onClick={addSong}>Submit</button>
+            <button type='submit' onClick={addSong}>Submit</button> */}
+            <FileInput />
           </div>
           <ul class='songsList'>
             {songs.map((song) => (
@@ -106,10 +115,6 @@ function App() {
             <input type='range' min='1' max='100' value='99'></input>
             <i></i>
           </div>
-
-          <Link to='/authTest'>
-            <button>test time</button>
-          </Link>
         </div>
       </div>
     </>
